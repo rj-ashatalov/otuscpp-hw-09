@@ -5,7 +5,7 @@ function(add_executable_from_dir TARGET SRC_DIR)
     add_executable(${TARGET} ${TARGET_SRC})
 endfunction()
 
-project(ip_filter VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+project(bayan VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 find_package(Threads REQUIRED)
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
@@ -14,12 +14,12 @@ configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
 add_executable_from_dir(${PROJECT_NAME} src)
 
-add_executable(test_version tests/test_version.cpp src/ip_filter.h)
+add_executable(test_version tests/test_version.cpp src/Bayan.h)
 
 add_library(patch_version lib.cpp)
 
 set_target_properties(${PROJECT_NAME} patch_version test_version PROPERTIES
-    CXX_STANDARD 14
+    CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
 )
